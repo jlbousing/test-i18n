@@ -1,5 +1,3 @@
-
-
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -9,13 +7,16 @@
       "i18n": {
         "sourceLocale": "es",
         "locales": {
-          "en-US": "src/locale/messages.en.xlf"
+          "en-US": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": ""
+          }
         }
       },
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "src", 
       "prefix": "app",
       "architect": {
         "build": {
@@ -33,7 +34,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/locale/messages.xlf",
+              "src/locale/messages.en.xlf"
             ],
             "styles": [
               "src/styles.css"
@@ -41,6 +44,18 @@
             "scripts": []
           },
           "configurations": {
+            "en": {
+              "aot": true,
+              "outputPath": "dist/test-i18n-en",
+              "i18nMissingTranslation": "error",
+              "sourceMap": true
+            },
+            "en-US": {
+              "aot": true,
+              "outputPath": "dist/test-i18n-en",
+              "i18nMissingTranslation": "error",
+              "sourceMap": true
+            },
             "production": {
               "budgets": [
                 {
@@ -75,6 +90,9 @@
             },
             "development": {
               "browserTarget": "test-i18n:build:development"
+            },
+            "en-US": {
+              "browserTarget": "test-i18n:build:en"
             }
           },
           "defaultConfiguration": "development"
